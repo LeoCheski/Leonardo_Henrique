@@ -21,14 +21,22 @@
             <li><a href="./carros.html">Carros</a></li>
             <li><a href="./table.html">Catálogo</a></li>
             <li><a href="./produtos.html">Produtos</a></li>
-            <li><a href="./form.html">Fale Conosco</a></li>
+            <li><a href="./form.html">Eventos</a></li>
           </ul>
         </nav>
+        <button onclick="toggleDarkMode()">Alternar Modo</button>
+
+        <script>
+            function toggleDarkMode() {
+                document.body.classList.toggle('dark-mode');
+            }
+        </script>
       </header>
     <section>
+        <thead>
         <h2>FUSCA</h2>
         <h3>MODELOS E FICHA TECNICA</h3>
-
+        </thead>
         <main>
             <table>
                 <tr class="modelos">
@@ -114,9 +122,10 @@
     <hr>
 
     <section>
+        <thead>
         <h2>CHEVETTE</h2>
         <h3>MODELOS E FICHA TECNICA</h3>
-
+        </thead>
         <main>
             <table>
                 <tr class="modelos">

@@ -130,6 +130,10 @@ body{
   background-color: #cecece;
 }
 
+.dark-mode {
+  background-color: #ece7d5;
+  color: #fff;
+}
 
 h2 {
     text-align: center;

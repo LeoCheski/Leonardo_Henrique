@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="formstyle.css">
     <link rel="short icon" type="image/png" href="./assets/fuscanavegador.png">
     <script src="https://kit.fontawesome.com/f3720b4055.js" crossorigin="anonymous"></script>
-    <title>Formulario</title>
+    <title>Eventos</title>
 
 </head>
 <body>
@@ -22,24 +22,52 @@
             <li><a href="./carros.html">Carros</a></li>
             <li><a href="./table.html">Catálogo</a></li>
             <li><a href="./produtos.html">Produtos</a></li>
-            <li><a href="./form.html">Fale Conosco</a></li>
+            <li><a href="./form.html">Eventos</a></li>
           </ul>
         </nav>
       </header> 
-    <section>
-        <h2>Contato</h2>
-        <form action="https://api.staticforms.xyz/submit" method="post">
+      <section>
+        <h2>Eventos</h2>
+        <form id="formC" action="https://api.staticforms.xyz/submit" method="post">
             <label>Nome</label>
-            <input type="text" name="name" placeholder="Digite seu nome">
+            <input type="text" id="name" name="name" placeholder="Digite seu nome">
             <label>Email</label>
-            <input type="email" name="email" placeholder="Digite seu email">
-            <label>Mensagem</label>
-            <textarea name="message" cols="30" rows="10" placeholder="Digite sua mensagem"></textarea>
-            <button type="submit">Enviar</button>
-
-            <input type="hidden" name="accessKey" value="f640f33a-3d8a-498d-9503-9707d27ef317">
-            <input type="hidden" name="redirectTo" value="http://127.0.0.1:5500/obrigado.html">
+            <input type="email" id="email" name="email" placeholder="Digite seu email">
+            <!--<label>Mensagem</label>
+            <textarea name="message" cols="30" rows="10" placeholder="Digite sua mensagem"></textarea>-->
+            <button type="button" onclick="salvar()">Registrar</button>
+            <!--<input type="hidden" name="accessKey" value="f640f33a-3d8a-498d-9503-9707d27ef317">
+            <input type="hidden" name="redirectTo" value="http://web_carro-main/obrigado.html">-->
         </form>
-    </section>
+        </section>
 </body>
+<script>
+  const formC = document.getElementById("formC");
+  const name = document.getElementById("name");
+  const email = document.getElementById("email");
+  const key = new URLSearchParams(window.location.search).get("chave");
+
+  var dados = JSON.parse(localStorage.getItem("dados")) || [];
+
+  if(key){
+      name.value = dados[key].name;
+      email.value = dados[key].email;
+  }
+  function salvar(){
+      let novoName = name.value;
+      let novoEmail = email.value;
+      if(key){
+          dados[key] = {name: novoName, email: novoEmail};
+      }
+      else {
+      dados.push({name: novoName, email: novoEmail});
+      }
+      
+      localStorage.setItem("dados", JSON.stringify(dados));
+      formC.reset();
+
+      window.location.href = "obrigado.html";
+  }
+</script>
+
 </html>
