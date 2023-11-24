@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="obrigado.css">
+    <title>Registros</title>
+</head>
+<body>
+    <main>
+        <section id="objetos">
+            <h2>Registrados no evento</h2>
+            <table id="tabela">
+                <tr>
+                    <th>Ticket</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                </tr>
+            </table>
+            <a href="index.html" class="retornar">Home</a>
+        </section>
+    </main>
+    <script>
+        const tabela = document.getElementById("tabela");
+        var dados = JSON.parse(localStorage.getItem("dados")) || [];
+
+        function mostrarDados(){
+      
+            dados.forEach((item, chave) => {
+                tabela.innerHTML += `
+                <tr>
+                    <td>${chave}</td>
+                    <td>${item.name}</td>
+                    <td>${item.email}</td>
+                    <td>
+                        <a href="./index.html?chave=${chave}">Editar</a>
+                        <a href="#" onclick="remover(${chave})">Remover</a>
+                        </td>
+                </tr>
+                `;
+            });
+        }
+
+        function remover(chave){
+            dados.splice(chave, 1);
+            localStorage.setItem("dados",JSON.stringify(dados));
+            window.location.href = "./obrigado.html";
+        }
+
+        mostrarDados();
+    </script>
+</body>
+</html>
